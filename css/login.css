@@ -1,0 +1,45 @@
+body {
+    background-color: #3b5998;
+}
+
+.tabs {
+    background-color: #3b5998;
+}
+
+.logo {
+    height: 130px;
+
+    margin: 0 90px;
+}
+
+#login-page {
+    width: 290px;
+
+    margin-top: 30px;
+ }
+ 
+ .card {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      -moz-transform: translate(-50%, -50%);
+      -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      -o-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+ }
+ 
+
+ /* tablet */
+
+ @media (min-width: 600px) {
+    .logo {
+        height: 300px;
+    
+        margin: 0 125px;
+    }
+    
+    #login-page {
+        width: 500px;
+     }
+ }
