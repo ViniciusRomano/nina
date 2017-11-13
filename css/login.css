@@ -8,8 +8,8 @@ body {
 
 .logo {
     height: 130px;
-
-    margin: 0 90px;
+    
+    margin: 15px 90px 0 90px;
 }
 
 #login-page {
@@ -17,8 +17,12 @@ body {
 
     margin-top: 30px;
  }
+
+table {
+    margin-top: 20px;
+}
  
- .card {
+.card {
       position: absolute;
       left: 50%;
       top: 50%;
@@ -36,10 +40,14 @@ body {
     .logo {
         height: 300px;
     
-        margin: 0 125px;
+        margin: 15px 125px 0 125px;
     }
     
     #login-page {
         width: 500px;
      }
+
+    table {
+        margin-top: 20px;
+    }
  }
