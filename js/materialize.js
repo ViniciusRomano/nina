@@ -3,7 +3,9 @@
  * Copyright 2014-2017 Materialize
  * MIT License (https://raw.githubusercontent.com/Dogfalo/materialize/master/LICENSE)
  */
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var tam_login = document.getElementById('login').offsetHeight;
+
+ var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -2624,7 +2626,7 @@ if (Vel) {
         // Change swipeable according to responsive threshold
         if (options.swipeable) {
           if (window_width > options.responsiveThreshold) {
-            options.swipeable = false;
+            options.swipeable = true;
           }
         }
 
@@ -2660,7 +2662,7 @@ if (Vel) {
         $this.append($indicator);
 
         if ($this.is(":visible")) {
-          // $indicator.css({"right": $tabs_width - ((index + 1) * $tab_width)});
+          // $indicator.css({"right": width - ((index + 1) * $tab_width)});
           // $indicator.css({"left": index * $tab_width});
           setTimeout(function () {
             $indicator.css({ "right": calcRightPos($active) });
@@ -9334,23 +9336,23 @@ if (Vel) {
               // If image won't trigger the load event
               var imageHeight = firstImage.height();
               if (imageHeight > 0) {
-                view.css('height', firstImage.height());
+                view.css('height', tam_login);
               } else {
                 // If image still has no height, use the natural dimensions to calculate
                 var naturalWidth = firstImage[0].naturalWidth;
                 var naturalHeight = firstImage[0].naturalHeight;
                 var adjustedHeight = view.width() / naturalWidth * naturalHeight;
-                view.css('height', adjustedHeight);
+                view.css('height', tam_login);
               }
             } else {
               // Get height when image is loaded normally
               firstImage.on('load', function () {
-                view.css('height', $(this).height());
+                view.css('height', tam_login);
               });
             }
           } else if (!imageOnly) {
             var slideHeight = firstSlide.height();
-            view.css('height', slideHeight);
+            view.css('height', tam_login);
           }
         };
 
