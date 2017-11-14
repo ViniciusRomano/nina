@@ -24,32 +24,29 @@
                 <div id="login" class="col s12">
                     <div id="login-page" class="row">
                         <div class="col s12 z-depth-5 card-panel">
-                        <!-- criar um pequeno espaço -->
-                        <div class="row">
-                        </div>
-                        <!-- logo unect -->
-                        <img class="logo" src="img/logo_unect_jr_png_azul.png">
+                            <!-- logo unect -->
+                            <img class="logo" src="img/logo_unect_jr_png_azul.png">
 
-                          <form class="login-form">
-                            <div class="row">
-                            </div>
-                            <!-- ra -->
-                            <div class="row">
-                              <div class="input-field col s12">
-                                <input class="validate" id="ra" type="text">
-                                <label for="ra">RA</label>
-                              </div>
-                            </div>
-                            <!-- botao -->
-                            <div class="row">
-                              <div class="input-field col s12">
-                                <a href="#" class="btn waves-effect waves-light col s12">Enviar</a>
-                              </div>
-                            </div>
+                            <form class="login-form">
+                                <div class="row">
+                                </div>
+                                <!-- ra -->
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input class="validate" id="ra" type="text">
+                                        <label for="ra">RA</label>
+                                    </div>
+                                </div>
+                                <!-- botao -->
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <a href="#" class="btn waves-effect waves-light col s12">Enviar</a>
+                                    </div>
+                                </div>
                     
-                          </form>
+                            </form>
                         </div>
-                      </div>
+                    </div>
                 </div>
 
                 <!-- tabela -->
@@ -62,7 +59,17 @@
 
         <!-- materialize.js -->
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-        <script type="text/javascript" src="js/materialize.min.js"></script>
+        <script type="text/javascript" src="js/materialize.js"></script>
+        <script>
+            $(document).ready(function(){
+                $('.tabs').tabs({
+                    swipeable: true
+                });                   
+                
+            });
+        </script>
+       
+                
         <!-- materialize.js -->
     </body>
 </html>
