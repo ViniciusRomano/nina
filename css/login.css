@@ -25,7 +25,11 @@ table {
 .finalizado {
     width: 20px;
 }
- 
+
+.espaco {
+    margin-top: 25px;
+}
+/* Centralizar */
 .card {
       position: absolute;
       left: 50%;
@@ -38,7 +42,7 @@ table {
  }
  
 
- /* tablet */
+ /* Maiores resoluções */
 
  @media (min-width: 600px) {
     .logo {
@@ -57,5 +61,9 @@ table {
 
     .finalizado {
         width: 20px;
+    }
+
+    .espaco {
+        margin-top: 25px;
     }
  }
