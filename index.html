@@ -34,7 +34,7 @@
                                 <!-- ra -->
                                 <div class="row">
                                     <div class="input-field col s12 espaco">
-                                        <input class="validate" id="ra" type="text">
+                                        <input class="validate" id="ra" onkeypress='return event.charCode >= 48 && event.charCode <= 57' type="text" maxlength="7">
                                         <label for="ra">RA</label>
                                     </div>
                                 </div>
@@ -82,7 +82,7 @@
         <script type="text/javascript" src="js/materialize.js"></script>
         <!-- Controlando a coluna "finalizado" -->
         <script>
-                if(boolean){
+                if(false){
                     document.getElementById("final-tabela").src="img/true.png";
                 }else{
                     document.getElementById("final-tabela").src="img/false.png";
