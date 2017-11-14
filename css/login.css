@@ -21,6 +21,10 @@ body {
 table {
     margin-top: 20px;
 }
+
+.finalizado {
+    width: 20px;
+}
  
 .card {
       position: absolute;
@@ -49,5 +53,9 @@ table {
 
     table {
         margin-top: 20px;
+    }
+
+    .finalizado {
+        width: 20px;
     }
  }
