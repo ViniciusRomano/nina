@@ -7,10 +7,10 @@ body {
 }
 
 .logo {
-    height: 155px;
 
-    margin: 0 83px;
-    padding-top: 15px;
+    height: 130px;
+    
+    margin: 15px 90px 0 90px;
 }
 
 #login-page {
@@ -18,8 +18,20 @@ body {
 
     margin-top: 30px;
  }
- 
- .card {
+
+table {
+    margin-top: 20px;
+}
+
+.finalizado {
+    width: 20px;
+}
+
+.espaco {
+    margin-top: 25px;
+}
+/* Centralizar */
+.card {
       position: absolute;
       left: 50%;
       top: 50%;
@@ -32,18 +44,27 @@ body {
 
  
 
- /* tablet */
+ /* Maiores resoluções */
 
  @media (min-width: 600px) {
     .logo {
         height: 305px;
-    
-        margin: 0 125px;
-        padding-top: 15px;
+        margin: 15px 125px 0 125px;
     }
     
     #login-page {
         width: 500px;
-       
-     }   
+     }
+
+    table {
+        margin-top: 20px;
+    }
+
+    .finalizado {
+        width: 20px;
+    }
+
+    .espaco {
+        margin-top: 25px;
+    }
  }

@@ -6,7 +6,7 @@
         <!-- fonte -->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <!-- css -->
-        <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+        <link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
         <link rel="stylesheet" href="css/login.css"/>
         <!-- para o browser saber que o site esta otimizado para mobile -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -20,6 +20,8 @@
                     <!-- tabela de presença -->
                     <li class="tab col s6"><a href="#tabela">Visualizar Presença</a></li>
                 </ul>
+
+
                 <!-- "login" -->
                 <div id="login" class="col s12">
                     <div id="login-page" class="row">
@@ -27,12 +29,11 @@
                             <!-- logo unect -->
                             <img class="logo" src="img/logo_unect_jr_png_azul.png">
 
+                            <!-- Inicio form "login" -->
                             <form class="login-form">
-                                <div class="row">
-                                </div>
                                 <!-- ra -->
                                 <div class="row">
-                                    <div class="input-field col s12">
+                                    <div class="input-field col s12 espaco">
                                         <input class="validate" id="ra" type="text">
                                         <label for="ra">RA</label>
                                     </div>
@@ -43,15 +44,34 @@
                                         <a href="#" class="btn waves-effect waves-light col s12">Enviar</a>
                                     </div>
                                 </div>
-                    
-                            </form>
+                          </form>
                         </div>
                     </div>
                 </div>
 
+
                 <!-- tabela -->
                 <div id="tabela" class="col s12">
-                    
+                    <table class="responsive-table highlight centered">
+                        <thead>
+                            <tr>
+                                <th>NOME</th>
+                                <th>DATA DE ÍNICIO</th>
+                                <th>DATA DE TÉRMINO</th>
+                                <th>HORAS TOTAIS</th>
+                                <th>FINALIZADO</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td><img class="finalizado" id="final-tabela" src="" alt=""></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -60,16 +80,13 @@
         <!-- materialize.js -->
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <script type="text/javascript" src="js/materialize.js"></script>
+        <!-- Controlando a coluna "finalizado" -->
         <script>
-            $(document).ready(function(){
-                $('.tabs').tabs({
-                    swipeable: true
-                });                   
-                
-            });
+                if(boolean){
+                    document.getElementById("final-tabela").src="img/true.png";
+                }else{
+                    document.getElementById("final-tabela").src="img/false.png";
+                }
         </script>
-       
-                
-        <!-- materialize.js -->
     </body>
 </html>
