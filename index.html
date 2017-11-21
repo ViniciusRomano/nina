@@ -7,11 +7,17 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <!-- css -->
         <link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+
         <link rel="stylesheet" href="css/login.css"/>
         <!-- para o browser saber que o site esta otimizado para mobile -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+        <!-- javascript firebase -->
+        <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
+
     </head>
     <body>
+        <script type="text/javascript" src="js/test.js"></script>
         <div class="row">
             <div class="col s12">
                 <ul class="tabs">
@@ -41,7 +47,7 @@
                                 <!-- botao -->
                                 <div class="row">
                                     <div class="input-field col s12">
-                                        <a href="#" class="btn waves-effect waves-light col s12">Enviar</a>
+                                        <a href="#" onclick="writePessoaData()" class="btn waves-effect waves-light col s12">Enviar</a>
                                     </div>
                                 </div>
                           </form>
