@@ -47,6 +47,18 @@ table {
     transform: translate(-50%, -50%);
 }
 
+a {
+    color: white;
+    text-decoration: none;
+}
+
+th:hover {
+    background-color: #5E7AB3;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    transition: 0.5s;
+}
+
 /* Maiores resoluções */
 
 @media (min-width: 600px) {
@@ -71,7 +83,11 @@ table {
 @media only screen and (max-width: 993px) {
     th,
     td {
-        padding-top: 3.0rem;
+        padding-top: 2.5rem;
         font-size: 120%;
+    }
+    th {
+        padding-top: 3.0rem;
+        font-size: 80%;
     }
 }

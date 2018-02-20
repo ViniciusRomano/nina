@@ -20,6 +20,8 @@
             crossorigin="anonymous"></script>
         <!-- sweet alert -->
         <script src="js/sweetalert2.all.js"></script>
+        <!-- table sort -->
+        <script src="js/stupidtable.js"></script>
     </head>
 
     <body>
@@ -72,11 +74,11 @@
                     <table class="responsive-table highlight centered">
                         <thead>
                             <tr>
-                                <th>NOME</th>
-                                <th>DATA DE ÍNICIO</th>
-                                <th>DATA DE TÉRMINO</th>
-                                <th>HORAS TOTAIS</th>
-                                <th>FINALIZADO</th>
+                                <th data-sort="string"><a href="#">NOME</a></th>
+                                <th data-sort="string"><a href="#">DATA DE ÍNICIO</a></th>
+                                <th data-sort="string"><a href="#">DATA DE TÉRMINO</a></th>
+                                <th data-sort="string"><a href="#">HORAS TOTAIS</a></th>
+                                <th data-sort="string"><a href="#">FINALIZADO</a></th>
                             </tr>
                         </thead>
                         <tbody id="table-body">

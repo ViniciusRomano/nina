@@ -12,11 +12,13 @@ var statusConnection = true;
 
 var inicialSettings = {
   init: function () {
+    inicialSettings.checkConnection();
     inicialSettings.loadData();
     inicialSettings.loadButton();
     inicialSettings.onUpdate();
-    inicialSettings.checkConnection();
+    inicialSettings.sortTable();
   },
+  sortTable: function () {},
   checkConnection: function () {
     var connectedRef = firebase.database().ref(".info/connected");
     connectedRef.on("value", function (snap) {
@@ -167,9 +169,13 @@ var inicialSettings = {
     ref.on("child_changed", function (snapshot) {
       inicialSettings.loadData();
     });
+    ref.on("child_added", function (snapshot) {
+      inicialSettings.loadData();
+    });
   }
 };
 
 $(document).ready(function () {
   inicialSettings.init();
+  $(".responsive-table").stupidtable();
 });
