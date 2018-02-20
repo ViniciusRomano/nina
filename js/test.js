@@ -8,11 +8,30 @@ firebase.initializeApp({
   messagingSenderId: "959133269945"
 });
 
+var statusConnection = true;
+
 var inicialSettings = {
   init: function () {
     inicialSettings.loadData();
     inicialSettings.loadButton();
     inicialSettings.onUpdate();
+    inicialSettings.checkConnection();
+  },
+  checkConnection: function () {
+    var connectedRef = firebase.database().ref(".info/connected");
+    connectedRef.on("value", function (snap) {
+      if (snap.val() === true) {
+        statusConnection = true;
+        $('#connection-circle').css({
+          fill: "#00ff00"
+        });
+      } else {
+        statusConnection = false;
+        $('#connection-circle').css({
+          fill: "e32929"
+        });
+      }
+    });
   },
   loadButton: function () {
     $("#submit-button").on('click', function () {
@@ -26,7 +45,6 @@ var inicialSettings = {
       var formattedTime = hour + ":" + min.substr(-2);
       var ra = document.getElementById("ra").value;
       var indice = 0;
-
       var ref = firebase.database().ref("pessoas/" + ra);
       if (ra == '') {
         swal({
@@ -35,6 +53,12 @@ var inicialSettings = {
           text: 'Este RA não é de um membro da Unect Jr.',
           footer: 'Caso necessário, entre em contato com a diretoria de projetos.',
         });
+      } else if (!statusConnection) {
+        swal(
+          'Problemas com a conexão!',
+          'Tente reconectar a internet. Assim que a conexão voltar, espere alguns segundos que a permanência será realizada automaticamente.',
+          'question'
+        );
       } else {
         ref.once("value").then(function (snapshot) {
           if (snapshot.exists()) {
@@ -100,8 +124,8 @@ var inicialSettings = {
             }).
             catch(function (error) {
               swal(
-                'Está conectado à internet?',
-                'Tente reconectar e repita  o procedimento!',
+                'Conexão não efetuada',
+                'As configurações do banco provavelmente não estão corretas. Informe à algum responsável na diretoria de projetos.',
                 'question'
               )
             });
@@ -123,9 +147,8 @@ var inicialSettings = {
     var month = date.getMonth() + 1;
     var day = date.getDate();
     var formattedDate = day + "-" + month + "-" + year;
-    var ref = firebase.database().ref("permanencias/" + formattedDate);
+    var ref = firebase.database().ref("permanencias/" + formattedDate).orderByChild('horainicio');
     ref.once("value").then(function (snapshot) {
-      console.log(snapshot.numChildren())
       var trHTML = '';
       jQuery.each(snapshot.val(), function (ra, permanencias) {
         jQuery.each(permanencias, function (i, perm) {

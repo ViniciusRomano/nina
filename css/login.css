@@ -30,6 +30,18 @@ table {
     margin-top: 25px;
 }
 
+.connection {
+    margin-top: 5px;
+}
+
+@media only screen and (max-width: 993px) {
+    th,
+    td {
+        padding-top: 4rem;
+        font-size: 120%;
+    }
+}
+
 /* Centralizar */
 
 .card {
