@@ -1,21 +1,27 @@
 <!DOCTYPE html>
 <html>
+
     <head>
         <meta charset="utf-8">
         <title>NINA</title>
         <!-- fonte -->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <!-- css -->
-        <link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+        <link type="text/css" rel="stylesheet" href="css/materialize.css" media="screen,projection" />
 
-        <link rel="stylesheet" href="css/login.css"/>
+        <link rel="stylesheet" href="css/login.css" />
         <!-- para o browser saber que o site esta otimizado para mobile -->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         <!-- javascript firebase -->
         <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
-
+        <!-- Jquery -->
+        <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+        <!-- sweet alert -->
+        <script src="js/sweetalert2.all.js"></script>
     </head>
+
     <body>
         <script type="text/javascript" src="js/test.js"></script>
         <div class="row">
@@ -47,10 +53,10 @@
                                 <!-- botao -->
                                 <div class="row">
                                     <div class="input-field col s12">
-                                        <a href="#" onclick="writePessoaData()" class="btn waves-effect waves-light col s12">Enviar</a>
+                                        <a href="#" id="submit-button" class="btn waves-effect waves-light col s12">Enviar</a>
                                     </div>
                                 </div>
-                          </form>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -68,31 +74,15 @@
                                 <th>FINALIZADO</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td><img class="finalizado" id="final-tabela" src="" alt=""></td>
-                            </tr>
+                        <tbody id="table-body">
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-
-
         <!-- materialize.js -->
-        <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <script type="text/javascript" src="js/materialize.js"></script>
-        <!-- Controlando a coluna "finalizado" -->
-        <script>
-                if(false){
-                    document.getElementById("final-tabela").src="img/true.png";
-                }else{
-                    document.getElementById("final-tabela").src="img/false.png";
-                }
         </script>
     </body>
+
 </html>

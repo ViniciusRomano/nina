@@ -1,23 +1,22 @@
 body {
     background-color: #3b5998;
+    overflow: hidden;
 }
 
 .tabs {
     background-color: #3b5998;
+    overflow: hidden;
 }
 
 .logo {
-
     height: 130px;
-    
     margin: 15px 90px 0 90px;
 }
 
 #login-page {
     width: 290px;
-
     margin-top: 30px;
- }
+}
 
 table {
     margin-top: 20px;
@@ -30,41 +29,37 @@ table {
 .espaco {
     margin-top: 25px;
 }
+
 /* Centralizar */
+
 .card {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      -moz-transform: translate(-50%, -50%);
-      -webkit-transform: translate(-50%, -50%);
-      -ms-transform: translate(-50%, -50%);
-      -o-transform: translate(-50%, -50%);
-      transform: translate(-50%, -50%);
- }
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -moz-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
 
- 
+/* Maiores resoluções */
 
- /* Maiores resoluções */
-
- @media (min-width: 600px) {
+@media (min-width: 600px) {
     .logo {
         height: 305px;
         margin: 15px 125px 0 125px;
     }
-    
     #login-page {
         width: 500px;
-     }
-
+    }
     table {
         margin-top: 20px;
     }
-
     .finalizado {
         width: 20px;
     }
-
     .espaco {
         margin-top: 25px;
     }
- }
+}
