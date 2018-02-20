@@ -71,7 +71,7 @@ table {
 @media only screen and (max-width: 993px) {
     th,
     td {
-        padding-top: 3.5rem;
+        padding-top: 3.0rem;
         font-size: 120%;
     }
 }
