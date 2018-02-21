@@ -162,8 +162,12 @@ var inicialSettings = {
           if (textStatus === 'timeout') {
             date = new Date(+Date.now());
             inicialSettings.insert(date);
-            console.log('napi')
+            console.log('fapi')
           }
+        }).done(function () {
+          date = new Date(+Date.now());
+          inicialSettings.insert(date);
+          console.log('dapi')
         })
       }
     });
