@@ -63,7 +63,12 @@ var inicialSettings = {
               var inicioMin = parseInt(inicio.substr(3, 5));
               var formattedHour = parseInt(formattedTime.substr(0, 2));
               var formattedMin = parseInt(formattedTime.substr(3, 5));
-              var horasT = ("0" + (formattedHour - inicioHour)).substr(-2) + ":" + ("0" + (formattedMin - inicioMin)).substr(-2);
+              if ((formattedMin - inicioMin) < 0) {
+                var horasT = ("0" + (formattedHour - inicioHour - 1)).substr(-2) + ":" + ("0" + (60 + (formattedMin - inicioMin))).substr(-2);
+              } else {
+                var horasT = ("0" + (formattedHour - inicioHour)).substr(-2) + ":" + ("0" + (formattedMin - inicioMin)).substr(-2);
+              }
+
               ref.child(ra + "/" + indice).update({
                 "horatermino": formattedTime,
                 "horastotais": horasT,
