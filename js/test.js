@@ -18,7 +18,9 @@ var inicialSettings = {
     inicialSettings.onUpdate();
     inicialSettings.sortTable();
   },
-  sortTable: function () {},
+  sortTable: function () {
+    $(".responsive-table").stupidtable();
+  },
   checkConnection: function () {
     var connectedRef = firebase.database().ref(".info/connected");
     connectedRef.on("value", function (snap) {
@@ -97,7 +99,8 @@ var inicialSettings = {
                     "horainicio": formattedTime,
                     "horatermino": null,
                     "horastotais": null,
-                    "finalizado": false
+                    "finalizado": false,
+                    "teste": firebase.database.ServerValue.TIMESTAMP
                   });
                   swal({
                     position: 'center',
@@ -177,5 +180,4 @@ var inicialSettings = {
 
 $(document).ready(function () {
   inicialSettings.init();
-  $(".responsive-table").stupidtable();
 });

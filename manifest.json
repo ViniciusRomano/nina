@@ -1,0 +1,16 @@
+{
+    "lang": "pt",
+    "dir": "ltr",
+    "name": "Nina UnectJr",
+    "short_name": "Nina",
+    "icons": [{
+        "src": "img\true.png",
+        "sizes": "48x48",
+        "type": "image/png"
+    }],
+    "theme_color": "#1a1a1a",
+    "background_color": "#1a1a1a",
+    "start_url": "/",
+    "display": "standalone",
+    "orientation": "natural"
+}
