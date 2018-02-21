@@ -156,7 +156,7 @@ var inicialSettings = {
             date = new Date((data.zones[0].timestamp - data.zones[0].gmtOffset) * 1000);
             //var date = new Date(+Date.now());
             inicialSettings.insert(date);
-            console.log('napi')
+            console.log('api')
           }
         }).fail(function (jqXHR, textStatus) {
           if (textStatus === 'timeout') {
