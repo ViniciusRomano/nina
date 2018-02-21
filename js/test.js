@@ -9,7 +9,7 @@ firebase.initializeApp({
 });
 
 var statusConnection = true;
-
+var date;
 var inicialSettings = {
   init: function () {
     inicialSettings.checkConnection();
@@ -37,19 +37,102 @@ var inicialSettings = {
       }
     });
   },
+  insert: function (date) {
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1;
+    var day = date.getDate();
+    var hour = date.getHours();
+    var min = "0" + date.getMinutes();
+    var formattedDate = day + "-" + month + "-" + year;
+    var formattedTime = hour + ":" + min.substr(-2);
+    var ra = document.getElementById("ra").value;
+    var indice = 0;
+    var ref = firebase.database().ref("pessoas/" + ra);
+    ref.once("value").then(function (snapshot) {
+      if (snapshot.exists()) {
+        var nome = snapshot.val();
+        var ref = firebase.database().ref("permanencias/" + formattedDate);
+        ref.once("value").then(function (snapshot) {
+          if (snapshot.exists()) {
+            while (snapshot.child(ra + "/" + indice + "/finalizado").val()) {
+              indice++;
+            }
+            if (snapshot.child(ra + "/" + indice).exists()) {
+              var inicio = snapshot.child(ra + "/" + indice + "/horainicio").val();
+              var inicioHour = parseInt(inicio.substr(0, 2));
+              var inicioMin = parseInt(inicio.substr(3, 5));
+              var formattedHour = parseInt(formattedTime.substr(0, 2));
+              var formattedMin = parseInt(formattedTime.substr(3, 5));
+              var horasT = ("0" + (formattedHour - inicioHour)).substr(-2) + ":" + ("0" + (formattedMin - inicioMin)).substr(-2);
+              ref.child(ra + "/" + indice).update({
+                "horatermino": formattedTime,
+                "horastotais": horasT,
+                "finalizado": true
+              });
+              swal({
+                position: 'center',
+                type: 'success',
+                title: 'Permanência fechada com sucesso!',
+                showConfirmButton: false,
+                timer: 2200
+              });
+
+            } else {
+              ref.child(ra + "/" + indice).set({
+                "nome": nome,
+                "horainicio": formattedTime,
+                "horatermino": null,
+                "horastotais": null,
+                "finalizado": false,
+                "teste": firebase.database.ServerValue.TIMESTAMP
+              });
+              swal({
+                position: 'center',
+                type: 'success',
+                title: 'Permanência aberta com sucesso!',
+                showConfirmButton: false,
+                timer: 2200
+              });
+            }
+          } else {
+            ref.child(ra + "/0").set({
+              "nome": nome,
+              "horainicio": formattedTime,
+              "horatermino": null,
+              "horastotais": null,
+              "finalizado": false
+            });
+            swal({
+              position: 'center',
+              type: 'success',
+              title: 'Entrada na permanência realizada com sucesso!',
+              showConfirmButton: false,
+              timer: 2200
+            });
+          }
+        }).
+        catch(function (error) {
+          swal(
+            'Conexão não efetuada',
+            'As configurações do banco provavelmente não estão corretas. Informe à algum responsável na diretoria de projetos.',
+            'question'
+          )
+        });
+      } else {
+        swal({
+          type: 'error',
+          title: 'RA não cadastrado!',
+          text: 'Este RA não é de um membro da Unect Jr.',
+          footer: 'Caso necessário, entre em contato com a diretoria de projetos.',
+        });
+      }
+    });
+  },
   loadButton: function () {
     $("#submit-button").on('click', function () {
-      var date = new Date(+Date.now());
-      var year = date.getFullYear();
-      var month = date.getMonth() + 1;
-      var day = date.getDate();
-      var hour = date.getHours();
-      var min = "0" + date.getMinutes();
-      var formattedDate = day + "-" + month + "-" + year;
-      var formattedTime = hour + ":" + min.substr(-2);
+      //console.log(data.zones[0].timestamp)
+      //console.log(new Date(data.zones[0].timestamp * 1000))
       var ra = document.getElementById("ra").value;
-      var indice = 0;
-      var ref = firebase.database().ref("pessoas/" + ra);
       if (ra == '') {
         swal({
           type: 'error',
@@ -64,85 +147,22 @@ var inicialSettings = {
           'question'
         );
       } else {
-        ref.once("value").then(function (snapshot) {
-          if (snapshot.exists()) {
-            var nome = snapshot.val();
-            var ref = firebase.database().ref("permanencias/" + formattedDate);
-            ref.once("value").then(function (snapshot) {
-              if (snapshot.exists()) {
-                while (snapshot.child(ra + "/" + indice + "/finalizado").val()) {
-                  indice++;
-                }
-                if (snapshot.child(ra + "/" + indice).exists()) {
-                  var inicio = snapshot.child(ra + "/" + indice + "/horainicio").val();
-                  var inicioHour = parseInt(inicio.substr(0, 2));
-                  var inicioMin = parseInt(inicio.substr(3, 5));
-                  var formattedHour = parseInt(formattedTime.substr(0, 2));
-                  var formattedMin = parseInt(formattedTime.substr(3, 5));
-                  var horasT = ("0" + (formattedHour - inicioHour)).substr(-2) + ":" + ("0" + (formattedMin - inicioMin)).substr(-2);
-                  ref.child(ra + "/" + indice).update({
-                    "horatermino": formattedTime,
-                    "horastotais": horasT,
-                    "finalizado": true
-                  });
-                  swal({
-                    position: 'center',
-                    type: 'success',
-                    title: 'Permanência fechada com sucesso!',
-                    showConfirmButton: false,
-                    timer: 2200
-                  });
-
-                } else {
-                  ref.child(ra + "/" + indice).set({
-                    "nome": nome,
-                    "horainicio": formattedTime,
-                    "horatermino": null,
-                    "horastotais": null,
-                    "finalizado": false,
-                    "teste": firebase.database.ServerValue.TIMESTAMP
-                  });
-                  swal({
-                    position: 'center',
-                    type: 'success',
-                    title: 'Permanência aberta com sucesso!',
-                    showConfirmButton: false,
-                    timer: 2200
-                  });
-                }
-              } else {
-                ref.child(ra + "/0").set({
-                  "nome": nome,
-                  "horainicio": formattedTime,
-                  "horatermino": null,
-                  "horastotais": null,
-                  "finalizado": false
-                });
-                swal({
-                  position: 'center',
-                  type: 'success',
-                  title: 'Entrada na permanência realizada com sucesso!',
-                  showConfirmButton: false,
-                  timer: 2200
-                });
-              }
-            }).
-            catch(function (error) {
-              swal(
-                'Conexão não efetuada',
-                'As configurações do banco provavelmente não estão corretas. Informe à algum responsável na diretoria de projetos.',
-                'question'
-              )
-            });
-          } else {
-            swal({
-              type: 'error',
-              title: 'RA não cadastrado!',
-              text: 'Este RA não é de um membro da Unect Jr.',
-              footer: 'Caso necessário, entre em contato com a diretoria de projetos.',
-            });
+        swal.showLoading();
+        $.ajax({
+          url: 'https://api.timezonedb.com/v2/list-time-zone?key=HXBDPTD39IGR&format=json&country=BR&zone=America/Sao_Paulo',
+          timeout: 3000, //3 second timeout
+          type: 'GET',
+          success: function (data) {
+            date = new Date((data.zones[0].timestamp - data.zones[0].gmtOffset) * 1000);
+            //var date = new Date(+Date.now());
+            inicialSettings.insert(date);
           }
-        });
+        }).fail(function (jqXHR, textStatus) {
+          if (textStatus === 'timeout') {
+            date = new Date(+Date.now());
+            inicialSettings.insert(date);
+          }
+        })
       }
     });
   },
