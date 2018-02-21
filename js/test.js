@@ -165,8 +165,6 @@ var inicialSettings = {
             console.log('fapi')
           }
         }).done(function () {
-          date = new Date(+Date.now());
-          inicialSettings.insert(date);
           console.log('dapi')
         })
       }
