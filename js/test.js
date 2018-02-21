@@ -8,15 +8,48 @@ firebase.initializeApp({
   messagingSenderId: "959133269945"
 });
 
+var disableGps = true;
+var statusGps = false;
+var statusPosition;
 var statusConnection = true;
 var date;
+
 var inicialSettings = {
   init: function () {
+    inicialSettings.getStatusGps();
     inicialSettings.checkConnection();
     inicialSettings.loadData();
     inicialSettings.loadButton();
     inicialSettings.onUpdate();
     inicialSettings.sortTable();
+  },
+  getStatusGps: function () {
+    function checkGpsOn() {
+      statusGps = true;
+    }
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(checkGpsOn);
+    } else {
+      statusGps = false
+      swal('Este Navegador não suporta Geolocalização!')
+    }
+  },
+  checkPosition: function (position) {
+    var lat = 22.304708
+    var long = 48.545886
+    var dist = (((position.coords.latitude + lat)) ** 2 + ((position.coords.longitude + long)) ** 2) ** 0.5
+    if (0.001 > dist) {
+      statusPosition = true;
+    } else {
+      statusPosition = false;
+    }
+  },
+  checkLocation: function () {
+    if (statusGps) {
+      navigator.geolocation.getCurrentPosition(inicialSettings.checkPosition);
+    } else {
+      swal('Este Navegador não suporta Geolocalização, ou está desativado!')
+    }
   },
   sortTable: function () {
     $(".responsive-table").stupidtable();
@@ -135,9 +168,11 @@ var inicialSettings = {
   },
   loadButton: function () {
     $("#submit-button").on('click', function () {
-      //console.log(data.zones[0].timestamp)
-      //console.log(new Date(data.zones[0].timestamp * 1000))
+      //get positions
+      navigator.geolocation.getCurrentPosition(inicialSettings.checkPosition);
       var ra = document.getElementById("ra").value;
+      // gps working
+
       if (ra == '') {
         swal({
           type: 'error',
@@ -148,7 +183,13 @@ var inicialSettings = {
       } else if (!statusConnection) {
         swal(
           'Problemas com a conexão!',
-          'Tente reconectar a internet. Assim que a conexão voltar, espere alguns segundos que a permanência será realizada automaticamente.',
+          'Verifique se o dispositivo está conectado a internet',
+          'question'
+        );
+      } else if (!statusGps) {
+        swal(
+          'Problemas com o GPS!',
+          'Ative sua localização de GPS. O Problema pode ser também que seu navegador não suporta geolocalização.',
           'question'
         );
       } else {
@@ -159,20 +200,38 @@ var inicialSettings = {
           type: 'GET',
           success: function (data) {
             date = new Date((data.zones[0].timestamp - data.zones[0].gmtOffset) * 1000);
-            //var date = new Date(+Date.now());
-            inicialSettings.insert(date);
+            if (statusPosition || disableGps) {
+              inicialSettings.insert(date);
+            } else {
+              swal({
+                type: 'error',
+                title: 'Você não está na sala de permanência!',
+                text: 'Segundo sua localização, você não se encontra na sala da permanência.',
+                footer: 'Caso necessário, entre em contato com a diretoria de projetos.',
+              });
+            }
             console.log('api')
           }
         }).fail(function (jqXHR, textStatus) {
           if (textStatus === 'timeout') {
             date = new Date(+Date.now());
-            inicialSettings.insert(date);
+            if (statusPosition || disableGps) {
+              inicialSettings.insert(date);
+            } else {
+              swal({
+                type: 'error',
+                title: 'Você não está na sala de permanência!',
+                text: 'Segundo sua localização, você não se encontra na sala da permanência.',
+                footer: 'Caso necessário, entre em contato com a diretoria de projetos.',
+              });
+            }
             console.log('fapi')
           }
         }).done(function () {
           console.log('dapi')
         })
       }
+
     });
   },
   loadData: function () {

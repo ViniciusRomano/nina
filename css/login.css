@@ -61,10 +61,30 @@ th:hover {
 
 /* Maiores resoluções */
 
+/* @media (max-width:350px) {
+    #login.col.s12.active {
+        padding-left: 7px;
+    }
+}
+*/
+
+@media (max-width:325px) {
+    #login.col.s12.active {
+        padding-left: 3px;
+    }
+}
+
+/* @media (max-width:320px) {
+    #login.col.s12.active {
+        padding-left: 0px;
+    }
+}
+ */
+
 @media (min-width: 600px) {
     .logo {
         height: 305px;
-        margin: 15px 125px 0 125px;
+        margin: 0px 125px 0px 125px;
     }
     #login-page {
         width: 500px;
