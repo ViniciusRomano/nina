@@ -269,3 +269,8 @@ var inicialSettings = {
 $(document).ready(function () {
   inicialSettings.init();
 });
+
+$(window).on('load', function () {
+  $(".se-pre-con").fadeOut("slow");
+});
+//$(".se-pre-con").fadeOut("slow");
