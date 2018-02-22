@@ -38,7 +38,7 @@ $(document).ready(function () {
                 className: 'mdl-data-table__cell--non-numeric'
             }]
         });
-        $(".se-pre-con").fadeOut("slow");;
+        $(".se-pre-con").fadeOut("slow");
         $("input.form-control.input-sm ").addClass('effect-1')
     })
 });
