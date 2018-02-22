@@ -1,4 +1,6 @@
-input.form-control.input-sm {}
+input.form-control {
+    margin-left: 10px;
+}
 
 .no-js #loader {
     display: none;
