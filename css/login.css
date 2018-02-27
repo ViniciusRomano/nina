@@ -1,6 +1,5 @@
 body {
     background-color: #3b5998;
-    overflow: hidden;
 }
 
 .tabs {
@@ -20,6 +19,8 @@ body {
 
 table {
     margin-top: 20px;
+    display: table;
+    overflow: auto;
 }
 
 .finalizado {
@@ -45,6 +46,13 @@ table {
     -ms-transform: translate(-50%, -50%);
     -o-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
+}
+
+#table-body {
+    overflow-x: scroll;
+    /*horizontal scroll*/
+    overflow-y: scroll;
+    /*vertical scroll*/
 }
 
 a {
