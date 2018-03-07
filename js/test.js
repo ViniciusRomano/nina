@@ -1,14 +1,5 @@
 // Initialize Firebase
-firebase.initializeApp({
-  apiKey: "AIzaSyB7NziL8iza-SRgQDpFV86Ud0GxGwxhM2U",
-  authDomain: "nina-20725.firebaseapp.com",
-  databaseURL: "https://nina-20725.firebaseio.com/",
-  projectId: "nina-20725",
-  storageBucket: "gs://nina-20725.appspot.com/",
-  messagingSenderId: "959133269945"
-});
-
-var disableGps = true;
+var disableGps = false;
 var statusGps = false;
 var statusPosition;
 var statusConnection = true;
@@ -35,10 +26,13 @@ var inicialSettings = {
     }
   },
   checkPosition: function (position) {
-    var lat = 22.304708
-    var long = 48.545886
-    var dist = (((position.coords.latitude + lat)) ** 2 + ((position.coords.longitude + long)) ** 2) ** 0.5
-    if (0.001 > dist) {
+    var lat = -23.1871363;
+    var long = -50.656422;
+    console.log(lat, long)
+    var dist = (((position.coords.latitude - lat)) ** 2 + ((position.coords.longitude - long)) ** 2) ** 0.5
+    console.log(position.coords.latitude, position.coords.longitude);
+    console.log(dist)
+    if (0.0007 > dist) {
       statusPosition = true;
     } else {
       statusPosition = false;
@@ -267,7 +261,21 @@ var inicialSettings = {
 };
 
 $(document).ready(function () {
-  inicialSettings.init();
+  $.get("../firebase.php", function (data) {
+    data = JSON.parse("[" + data + "]");
+    data = data[0]
+    var config = {
+      apiKey: data[0],
+      authDomain: data[1],
+      databaseURL: data[2],
+      projectId: data[3],
+      storageBucket: data[4],
+      messagingSenderId: data[5]
+    }
+    firebase.initializeApp(config);
+  }).done(function (data) {
+    inicialSettings.init();
+  })
 });
 
 $(window).on('load', function () {

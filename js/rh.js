@@ -1,12 +1,4 @@
 // Initialize Firebase
-firebase.initializeApp({
-    apiKey: "AIzaSyB7NziL8iza-SRgQDpFV86Ud0GxGwxhM2U",
-    authDomain: "nina-20725.firebaseapp.com",
-    databaseURL: "https://nina-20725.firebaseio.com/",
-    projectId: "nina-20725",
-    storageBucket: "gs://nina-20725.appspot.com/",
-    messagingSenderId: "959133269945"
-});
 var inicialSettings = {
     init: function () {
         inicialSettings.populateTable();
@@ -21,7 +13,6 @@ var inicialSettings = {
             jQuery.each(snapshot.val(), function (data, permPerson) {
                 jQuery.each(permPerson, function (ra, permanencias) {
                     jQuery.each(permanencias, function (i, perm) {
-                        console.log(data.replace(/-/gi, "/"))
                         if (perm.finalizado) {
                             trHTML += '<tr><td>' + ra + '</td><td>' + perm.nome + '</td><td>' + data.replace(/-/gi, "/") + '</td><td>' + perm.horainicio + '</td><td>' + perm.horatermino + '</td><td class="horastotais">' + perm.horastotais + '</td></tr>';
                         } else {
@@ -62,10 +53,23 @@ var inicialSettings = {
         });
         hora += parseInt(min / 60);
         min = min % 60
-        console.log(hora, min)
-        $('#somatotal').text(hora + ":" + min)
+        $('#somatotal').text(("0" + hora).substr(-2) + ":" + ("0" + min).substr(-2))
     },
 };
 $(document).ready(function () {
-    inicialSettings.init();
+    $.get("../firebase.php", function (data) {
+        data = JSON.parse("[" + data + "]");
+        data = data[0]
+        var config = {
+            apiKey: data[0],
+            authDomain: data[1],
+            databaseURL: data[2],
+            projectId: data[3],
+            storageBucket: data[4],
+            messagingSenderId: data[5]
+        }
+        firebase.initializeApp(config);
+    }).done(function (data) {
+        inicialSettings.init();
+    })
 });
